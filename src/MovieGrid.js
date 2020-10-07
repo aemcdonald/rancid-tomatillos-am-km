@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './MovieGrid.css'
+import MovieCard from './MovieCard.js';
+import './MovieGrid.css';
 
 class MovieGrid extends Component {
   constructor() {
@@ -34,11 +35,19 @@ class MovieGrid extends Component {
     }
   }
   render() {
+    const movieCards = this.state.movies.map(movie => {
+      return (
+        <MovieCard
+          avgRating={movie.average_rating}
+          title={movie.title}
+          photo={movie.poster_path}
+          releaseDate={movie.release_date}
+        />
+      )
+    })
     return (
       <div className='movies-container'>
-        {this.state.movies.forEach(movie => {
-          <Card movie={movie}/>
-        })}
+        {movieCards}
       </div>
     )
   }
