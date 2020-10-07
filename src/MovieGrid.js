@@ -34,6 +34,14 @@ class MovieGrid extends Component {
       ]
     }
   }
+
+  componentDidMount = () => {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+    .then(response => response.json())
+    .then(data => this.setState({movies: data.movies}))
+    .catch(error => console.log(error.message))
+  }
+
   render() {
     const movieCards = this.state.movies.map(movie => {
       return (
