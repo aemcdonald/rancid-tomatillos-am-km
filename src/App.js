@@ -7,13 +7,15 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: {id: 1, name: "Olivia", email: "alan@turing.io"}
     }
   }
   render() {
     return (
       <main className='App'>
+        <header>{this.state.user.id ? 'Log Out' : 'Log In'}</header>
         <h1>Rancid Tomatillos</h1>
+        <MovieGrid />
       </main>
     )
   }
