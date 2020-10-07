@@ -46,6 +46,7 @@ class MovieGrid extends Component {
     const movieCards = this.state.movies.map(movie => {
       return (
         <MovieCard
+          key={movie.id}
           avgRating={movie.average_rating}
           title={movie.title}
           photo={movie.poster_path}
