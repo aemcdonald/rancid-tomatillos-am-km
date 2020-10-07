@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import MovieGrid from './MovieGrid.js';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {id: 1, name: "Olivia", email: "alan@turing.io"}
+    }
+  }
+  render() {
+    return (
+      <main className='App'>
+        <header>{this.state.user.id ? 'Log Out' : 'Log In'}</header>
+        <h1>Rancid Tomatillos</h1>
+        <MovieGrid />
+      </main>
+    )
+  }
+}
+export default App
