@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieGrid from './MovieGrid.js';
+import MovieGrid from '../MovieGrid/MovieGrid.js';
 import './App.css';
 
 
@@ -13,8 +13,11 @@ class App extends Component {
   render() {
     return (
       <main className='App'>
-        <header>{this.state.user.id ? 'Log Out' : 'Log In'}</header>
-        <h1>Rancid Tomatillos</h1>
+        <header className='header'>
+          <h1>Rancid Tomatillos</h1>
+          {this.state.user.id ? 'Log Out' : 'Log In'}
+          <section className='greeting'>{'Welcome, ' + this.state.user.name + '!'}</section>
+        </header>
         <MovieGrid />
       </main>
     )

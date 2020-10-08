@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieCard from './MovieCard.js';
+import MovieCard from '../MovieCard/MovieCard.js';
 import './MovieGrid.css';
 
 class MovieGrid extends Component {
@@ -34,10 +34,19 @@ class MovieGrid extends Component {
       ]
     }
   }
+
+  componentDidMount = () => {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+    .then(response => response.json())
+    .then(data => this.setState({movies: data.movies}))
+    .catch(error => console.log(error.message))
+  }
+
   render() {
     const movieCards = this.state.movies.map(movie => {
       return (
         <MovieCard
+          key={movie.id}
           avgRating={movie.average_rating}
           title={movie.title}
           photo={movie.poster_path}
