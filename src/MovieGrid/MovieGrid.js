@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieCard from './MovieCard.js';
+import MovieCard from '../MovieCard/MovieCard.js';
 import './MovieGrid.css';
 
 class MovieGrid extends Component {

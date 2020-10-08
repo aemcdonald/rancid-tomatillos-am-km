@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieGrid from './MovieGrid.js';
+import MovieGrid from '../MovieGrid/MovieGrid.js';
 import './App.css';
 
 
