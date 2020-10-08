@@ -16,11 +16,14 @@ class App extends Component {
     return (
       <main className='App'>
         <header className='header'>
-          <h1>Rancid Tomatillos</h1>
-          {this.state.user.id ? 'Log Out' : 'Log In'}
-          <section className='greeting'>{'Welcome, ' + this.state.user.name + '!'}</section>
+        <h1>Rancid Tomatillos</h1>
+        {this.state.user.id ? 'Log Out' : 'Log In'}
+        <section className='greeting'>{'Welcome, ' + this.state.user.name + '!'}</section>
         </header>
-        <MovieGrid />
+        <Switch>
+          <Route path="/" component={MovieGrid} exact />
+            <MovieGrid />
+        </Switch>
       </main>
     )
   }
