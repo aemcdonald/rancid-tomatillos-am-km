@@ -4,7 +4,6 @@ import './MovieCard.css';
 const MovieCard = ({ title, avgRating, photo, releaseDate, history, movieId }) => {
   return (
     <section className='movieCard' onClick={() => {
-      console.log("oh haaay");
       history.push(`/${movieId}`)}}>
       <h3>{title}</h3>
       <h4>Average Rating: {avgRating}</h4>
