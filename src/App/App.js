@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MovieGrid from '../MovieGrid/MovieGrid.js';
+import MovieView from '../MovieView/MovieView.js';
 import './App.css';
 
 
@@ -22,7 +23,7 @@ class App extends Component {
         </header>
         <Switch>
           <Route path="/" component={MovieGrid} exact />
-          <Route path="/:movieId" component={MovieGrid} />
+          <Route path="/:movieId" component={MovieView} />
         </Switch>
       </main>
     )
