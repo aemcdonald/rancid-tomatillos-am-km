@@ -22,7 +22,7 @@ class App extends Component {
         </header>
         <Switch>
           <Route path="/" component={MovieGrid} exact />
-            <MovieGrid />
+          <Route path="/:movieId" component={MovieGrid} />
         </Switch>
       </main>
     )

@@ -51,6 +51,8 @@ class MovieGrid extends Component {
           title={movie.title}
           photo={movie.poster_path}
           releaseDate={movie.release_date}
+          history={this.props.history}
+          movieId={movie.id}
         />
       )
     })
