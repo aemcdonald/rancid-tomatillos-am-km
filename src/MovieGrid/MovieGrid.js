@@ -18,7 +18,7 @@ class MovieGrid extends Component {
   }
 
   render() {
-    console.log(this.props.match);
+    console.log(this.props);
     const movieCards = this.state.movies.map(movie => {
       return (
         <MovieCard
