@@ -1,6 +1,7 @@
 .movieCard {
+  background-color: #f3f6f6;
   box-sizing: border-box;
-  border: 3px solid black;
+  border: 3px solid #262626;
   padding: 10px;
 }
 .poster {
