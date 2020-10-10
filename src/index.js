@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
 import App from './App/App.js';
 import * as serviceWorker from './serviceWorker';
+import './RancidTomLogo.png';
 
 ReactDOM.render(
   <React.StrictMode>

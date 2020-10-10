@@ -1,0 +1,13 @@
+.movieView {
+  height: 100vh;
+}
+.movieTitle {
+  font-size: 3em;
+  font-family: 'Tahoma';
+  color: #262626
+}
+.movieOverview {
+  font-size: .75em;
+  padding: 20px 100px;
+  font-family: 'Tahoma';
+}

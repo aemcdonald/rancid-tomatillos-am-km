@@ -5,6 +5,7 @@ import MovieView from '../MovieView/MovieView.js';
 import ApiCalls from '../ApiCalls.js';
 import Login from '../Login/Login.js';
 import './App.css';
+import logo from '../RancidTomLogo.png';
 
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
     return (
       <main className='App'>
         <header className='header'>
-        <h1>Rancid Tomatillos</h1>
+        <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
           <Link to={'/login'}>
             {path !== '/login' && <button>Login!</button>}
           </Link>
