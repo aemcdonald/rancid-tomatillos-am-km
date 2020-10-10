@@ -25,6 +25,7 @@ class App extends Component {
         </header>
         <Switch>
           <Route path="/" component={MovieGrid} exact />
+          <Route path='/login' component={Login} />
           <Route path="/:movieId" component={MovieView} />
         </Switch>
       </main>
