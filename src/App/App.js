@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MovieGrid from '../MovieGrid/MovieGrid.js';
 import MovieView from '../MovieView/MovieView.js';
-import ApiCalls from '../ApiCalls.js'
+import ApiCalls from '../ApiCalls.js';
+import Login from '../Login/Login.js';
 import './App.css';
 
 
