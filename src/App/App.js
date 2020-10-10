@@ -12,7 +12,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: {
+
+      }
       //we will want these to be empty strings eventually...
     }
   }
@@ -33,8 +35,17 @@ class App extends Component {
   }
 
   //login fn
+  handleLogin = () => {
+
+  }
 
   //logout fn
+  handleLogout = () => {
+    this.setState({
+      user: {}
+    })
+    this.props.history.push('/')
+  }
 
   //if (!user.id)
     //button "log in"
@@ -52,7 +63,7 @@ class App extends Component {
         <h1>Rancid Tomatillos</h1>
           <section>{!this.state.user.id && <button>Login</button>}</section>
           <section>
-            {this.state.user.id && <button>Logout</button>}
+            {this.state.user.id && <button onClick={this.handleLogout()}>Logout</button>}
             <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
           </section>
         </header>
