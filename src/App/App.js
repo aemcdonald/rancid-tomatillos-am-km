@@ -13,8 +13,25 @@ class App extends Component {
     super();
     this.state = {
       user: {id: 1, name: "Olivia", email: "alan@turing.io"}
+      //we will want these to be empty strings eventually...
     }
   }
+
+  updateCurrentUser = (userInfo) => {
+    console.log("App pre state", this.state)
+    this.setState(userInfo)
+    console.log("App state", this.state)
+  }
+
+  handleLoginSubmit = (userInfo) => {
+    ApiCalls.postUserLogin(userInfo)
+    .then(data => {console.log(data)
+    this.updateCurrentUser(data)
+    // return data
+    //can use the data returned here to grab user ID later...
+    })
+  }
+
   render() {
     return (
       <main className='App'>
@@ -24,8 +41,14 @@ class App extends Component {
         <section className='greeting'>{'Welcome, ' + this.state.user.name + '!'}</section>
         </header>
         <Switch>
+          <Route
+            path='/login'
+            render={(props) => (
+            <Login {...props} handleSubmit={this.handleLoginSubmit} />
+          )}
+          />
+
           <Route path="/" component={MovieGrid} exact />
-          <Route path='/login' component={Login} />
           <Route path="/:movieId" component={MovieView} />
         </Switch>
       </main>
