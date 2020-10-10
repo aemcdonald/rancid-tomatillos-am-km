@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiCalls from '../ApiCalls.js';
+import App from '../App/App.js';
 import './Login.css';
 
 
@@ -17,12 +18,12 @@ class Login extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    ApiCalls.postUserLogin(this.state)
-    .then(data => {console.log(data)
-    return data
-    })
+  submitLogin = event => {
+    event.preventDefault();
+    const loginInfo = {
+      ...this.state
+    }
+    this.props.handleSubmit(loginInfo)
   }
 
   //need method to authenticate username & password
@@ -46,7 +47,7 @@ class Login extends Component {
           value={this.state.password}
           onChange={this.getUserInput}
         />
-        <button onClick={this.handleSubmit}>Login</button>
+        <button onClick={this.submitLogin}>Login</button>
       </form>
     )
   }
