@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import MovieGrid from '../MovieGrid/MovieGrid.js';
 import MovieView from '../MovieView/MovieView.js';
 import ApiCalls from '../ApiCalls.js';
@@ -7,14 +7,12 @@ import Login from '../Login/Login.js';
 import './App.css';
 
 
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {
-
-      }
+      user: {},
+      isOnHomePage: true
       //we will want these to be empty strings eventually...
     }
   }
@@ -34,38 +32,34 @@ class App extends Component {
     })
   }
 
-  //login fn
-  handleLogin = () => {
-
-  }
-
-  //logout fn
   handleLogout = () => {
     this.setState({
       user: {}
     })
-    this.props.history.push('/')
+  }
+  loginButtonFunction = () => {
+    const path = window.location.pathname
+    console.log(path)
+    if(!this.state.user.id && path === '/login') {
+      return false
+    } else {
+      return true
+    }
   }
 
-  //if (!user.id)
-    //button "log in"
-    //no greeting?
-    //when button clicked, render login component
-  //else
-    //button logout
-    //Welcome user
-    //render /
-
   render() {
+    let path = window.location.pathname
     return (
       <main className='App'>
         <header className='header'>
         <h1>Rancid Tomatillos</h1>
-          <section>{!this.state.user.id && <button>Login</button>}</section>
-          <section>
-            {this.state.user.id && <button onClick={this.handleLogout()}>Logout</button>}
-            <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
-          </section>
+          <Link to={'/login'}>
+            {path !== '/login' && <button>Login!</button>}
+          </Link>
+          <Link to={'/'}>
+            {this.state.user.id && <button onClick={this.handleLogout}>Logout</button>}
+          </Link>
+          <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
         </header>
         <Switch>
           <Route
