@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {id: 1, name: "Olivia", email: "alan@turing.io"}
+      user: {}
       //we will want these to be empty strings eventually...
     }
   }
@@ -32,13 +32,29 @@ class App extends Component {
     })
   }
 
+  //login fn
+
+  //logout fn
+
+  //if (!user.id)
+    //button "log in"
+    //no greeting?
+    //when button clicked, render login component
+  //else
+    //button logout
+    //Welcome user
+    //render /
+
   render() {
     return (
       <main className='App'>
         <header className='header'>
         <h1>Rancid Tomatillos</h1>
-        {this.state.user.id ? 'Log Out' : 'Log In'}
-        <section className='greeting'>{'Welcome, ' + this.state.user.name + '!'}</section>
+          <section>{!this.state.user.id && <button>Login</button>}</section>
+          <section>
+            {this.state.user.id && <button>Logout</button>}
+            <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
+          </section>
         </header>
         <Switch>
           <Route
