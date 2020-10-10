@@ -7,8 +7,8 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      userEmail: '',
-      userPassword: ''
+      email: '',
+      password: ''
       //name: 'Olivia', email: 'olivia@turing.io', password: 'pword'
     }
   }
@@ -17,6 +17,8 @@ class Login extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  //need method to authenticate username & password
+
   render() {
     return (
       <form>
@@ -24,19 +26,19 @@ class Login extends Component {
           type='text'
           label='email input'
           placeholder='Email'
-          name='userEmail'
-          value={this.state.userEmail.toLowerCase()}
+          name='email'
+          value={this.state.email.toLowerCase()}
           onChange={this.getUserInput}
         />
         <input
           type='password'
           label='password input'
           placeholder='Password'
-          name='userPassword'
-          value={this.state.userPassword}
+          name='password'
+          value={this.state.password}
           onChange={this.getUserInput}
         />
-        <button>Login</button>
+        <button onClick=(event => ApiCalls.postUserLogin(this.state))>Login</button>
       </form>
     )
   }
