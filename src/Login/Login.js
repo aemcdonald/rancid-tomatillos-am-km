@@ -17,6 +17,14 @@ class Login extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault()
+    ApiCalls.postUserLogin(this.state)
+    .then(data => {console.log(data)
+    return data
+    })
+  }
+
   //need method to authenticate username & password
 
   render() {
@@ -38,7 +46,7 @@ class Login extends Component {
           value={this.state.password}
           onChange={this.getUserInput}
         />
-        <button onClick=(event => ApiCalls.postUserLogin(this.state))>Login</button>
+        <button onClick={this.handleSubmit}>Login</button>
       </form>
     )
   }
