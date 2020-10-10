@@ -44,10 +44,9 @@ class App extends Component {
           <Route
             path='/login'
             render={(props) => (
-            <Login {...props} handleSubmit={this.handleLoginSubmit} />
-          )}
+              <Login {...props} handleSubmit={this.handleLoginSubmit} />
+            )}
           />
-
           <Route path="/" component={MovieGrid} exact />
           <Route path="/:movieId" component={MovieView} />
         </Switch>
