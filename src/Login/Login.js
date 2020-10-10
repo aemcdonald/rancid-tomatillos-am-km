@@ -24,6 +24,7 @@ class Login extends Component {
       ...this.state
     }
     this.props.handleSubmit(loginInfo)
+    this.props.history.push('/')
   }
 
   //need method to authenticate username & password
