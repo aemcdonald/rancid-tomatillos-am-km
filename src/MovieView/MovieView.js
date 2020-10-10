@@ -14,7 +14,6 @@ class MovieView extends Component {
     this.setState({movie: movie.movie})
   }
   render() {
-    console.log(this.state);
     return (
       <section className='movieView'>
         <h1>{this.state.movie.title}</h1>
