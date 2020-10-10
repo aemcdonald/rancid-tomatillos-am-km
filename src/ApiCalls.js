@@ -7,7 +7,6 @@ const ApiCalls = {
   },
 
   postUserLogin(userLoginInfo) {
-    console.log(userLoginInfo)
     return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/login', {
       method: 'POST',
       headers: {
@@ -16,7 +15,7 @@ const ApiCalls = {
       body: JSON.stringify(userLoginInfo)
     })
     .then(response => response.json())
-    .then(data => console.log('success:', data))
+    .then(data => data)
     .catch(err => console.log('failed', err.message))
   }
 }
