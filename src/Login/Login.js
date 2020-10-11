@@ -42,7 +42,7 @@ class Login extends Component {
   render() {
     return (
       <form>
-        <h2>{!this.formFulfilled() && 'Please type your email and password to sign in'}</h2>
+        <h2 className='errorMessage'>{!this.formFulfilled() && 'Please type your email and password to sign in'}</h2>
         <input
           type='text'
           label='email input'
@@ -51,6 +51,7 @@ class Login extends Component {
           value={this.state.email.toLowerCase()}
           onChange={this.getUserInput}
         />
+        <br></br>
         <input
           type='password'
           label='password input'
@@ -59,6 +60,7 @@ class Login extends Component {
           value={this.state.password}
           onChange={this.getUserInput}
         />
+        <br></br>
         <button onClick={this.submitLogin}>Login</button>
       </form>
     )
