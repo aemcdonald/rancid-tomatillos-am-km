@@ -62,16 +62,16 @@ class App extends Component {
         </Link>
         <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
       </header>
-        <Switch>
-          <Route
-            path='/login'
-            render={(props) => (
-              <Login {...props} handleSubmit={this.handleLoginSubmit} />
-            )}
-          />
-          <Route path="/" component={MovieGrid} exact />
-          <Route path="/:movieId" component={MovieView} />
-        </Switch>
+      <Switch>
+        <Route
+          path='/login'
+          render={(props) => (
+            <Login {...props} handleSubmit={this.handleLoginSubmit} />
+          )}
+        />
+        <Route path="/" component={MovieGrid} exact />
+        <Route path="/:movieId" component={MovieView} />
+      </Switch>
       </main>
     )
   }
