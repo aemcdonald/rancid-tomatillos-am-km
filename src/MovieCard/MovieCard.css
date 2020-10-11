@@ -6,4 +6,11 @@
 }
 .poster {
   height: 250px;
+  filter: grayscale(2);
+  opacity: 75%;
+}
+.poster:hover {
+  filter: none;
+  opacity: 100%;
+  cursor: pointer;
 }
