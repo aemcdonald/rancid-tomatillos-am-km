@@ -17,7 +17,7 @@ class MovieView extends Component {
     return (
       <section className='movieView'>
         <h1 className='movieTitle'>{this.state.movie.title}</h1>
-        <img className='poster' src={this.state.movie.backdrop_path} alt={this.state.movie.title} movie poster/>
+        <img className='screenshot' src={this.state.movie.backdrop_path} alt={this.state.movie.title + ' movie poster'}/>
         <h4 className='movieOverview'>{this.state.movie.overview}</h4>
         <h5>Release Date: {this.state.movie.release_date}</h5>
         <h6>Averge Rating: {this.state.movie.average_rating}</h6>

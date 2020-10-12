@@ -1,0 +1,10 @@
+form {
+  text-align: center;
+}
+input {
+  height: 25px;
+  margin: 10px 5px 5px 5px;
+}
+.errorMessage {
+  font-size: .75em;
+}

@@ -5,9 +5,9 @@ const MovieCard = ({ title, avgRating, photo, releaseDate, history, movieId }) =
   return (
     <section className='movieCard' onClick={() => {
       history.push(`/${movieId}`)}}>
-      <h3>{title}</h3>
+      <h1 className='cardTitle'>{title}</h1>
       <h4>Average Rating: {avgRating}</h4>
-      <img className='poster' src={photo} alt={title} movie poster/>
+      <img className='poster' src={photo} alt={title + ' movie poster'}/>
       <h5>Release Date: {releaseDate}</h5>
     </section>
   )

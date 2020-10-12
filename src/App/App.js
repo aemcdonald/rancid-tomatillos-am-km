@@ -52,26 +52,26 @@ class App extends Component {
     let path = window.location.pathname
     return (
       <main className='App'>
-        <header className='header'>
-        <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
-          <Link to={'/login'}>
-            {path !== '/login' && <button>Login!</button>}
-          </Link>
-          <Link to={'/'}>
-            {this.state.user.id && <button onClick={this.handleLogout}>Logout</button>}
-          </Link>
-          <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
-        </header>
-        <Switch>
-          <Route
-            path='/login'
-            render={(props) => (
-              <Login {...props} handleSubmit={this.handleLoginSubmit} />
-            )}
-          />
-          <Route path="/" component={MovieGrid} exact />
-          <Route path="/:movieId" component={MovieView} />
-        </Switch>
+      <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
+      <header className='header'>
+        <Link to={'/login'}>
+        {path !== '/login' && <button>Login!</button>}
+        </Link>
+        <Link to={'/'}>
+        {this.state.user.id && <button onClick={this.handleLogout}>Logout</button>}
+        </Link>
+        <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
+      </header>
+      <Switch>
+        <Route
+          path='/login'
+          render={(props) => (
+            <Login {...props} handleSubmit={this.handleLoginSubmit} />
+          )}
+        />
+        <Route path="/" component={MovieGrid} exact />
+        <Route path="/:movieId" component={MovieView} />
+      </Switch>
       </main>
     )
   }
