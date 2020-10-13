@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieCard from '../MovieCard/MovieCard.js';
+import ApiCalls from '../ApiCalls.js';
 import './MovieGrid.css';
 
 class MovieGrid extends Component {
@@ -10,11 +11,10 @@ class MovieGrid extends Component {
     }
   }
 
-  componentDidMount = () => {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-    .then(response => response.json())
-    .then(data => this.setState({movies: data.movies}))
-    .catch(error => console.log(error.message))
+  async componentDidMount() {
+    const allMovies = await ApiCalls.getAllMovies()
+    this.setState({movies: allMovies.movies})
+    console.log("allMovies", allMovies.movies)
   }
 
   render() {

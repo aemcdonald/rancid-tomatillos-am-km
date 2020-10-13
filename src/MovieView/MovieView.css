@@ -1,14 +1,19 @@
+.movieView {
+  background-size: cover;
+  height: 80vh;
+}
 .movieTitle {
   font-size: 3em;
-  color: #262626
+  color: #262626;
+  margin: 0;
+  padding: 20px;
 }
 .movieOverview {
   font-size: .75em;
   padding: 20px 100px;
 }
-.screenshot {
-  height: 250px;
-}
-.cardTitle {
-  color: #a03d2c;
+.movieInfo {
+  background-color: rgba(184, 184, 184, 0.85);
+  height: 100%;
+  padding: 0;
 }
