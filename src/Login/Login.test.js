@@ -37,6 +37,7 @@ describe('Login', () => {
     render(<BrowserRouter><App /></BrowserRouter>)
     expect(screen.getByText('Login!')).toBeInTheDocument()
 
+
     userEvent.click(screen.getByText('Login!'))
     expect(screen.getByPlaceholderText('Email')).toBeInTheDocument()
 
@@ -46,6 +47,13 @@ describe('Login', () => {
 
     const welcomeMessage = await waitFor(() => screen.getByText('Welcome, Olivia!'))
     expect(welcomeMessage).toBeInTheDocument();
+    ApiCalls.getAllMovies.mockResolvedValueOnce(
+      { movies: [
+        { id: 1, title: 'Mulan' },
+        { id: 2, title: 'Titanic' },
+        { id: 3, title: 'Kill Bill' }
+      ]}
+    )
   })
   // it('should ')
 })
