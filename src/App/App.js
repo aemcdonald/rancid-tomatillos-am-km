@@ -19,9 +19,7 @@ class App extends Component {
   }
 
   updateCurrentUser = (userInfo) => {
-    console.log("App pre state", this.state)
     this.setState(userInfo)
-    console.log("App state", this.state)
   }
 
   handleLoginSubmit = (userInfo) => {
@@ -35,27 +33,23 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({
-      user: {}
+      user: {},
+      isOnHomePage: true
     })
   }
   loginButtonFunction = () => {
-    const path = window.location.pathname
-    console.log(path)
-    if(!this.state.user.id && path === '/login') {
-      return false
-    } else {
-      return true
-    }
+    this.setState({isOnHomePage: false})
   }
 
   render() {
     let path = window.location.pathname
+    console.log(window.location.pathname)
     return (
       <main className='App'>
       <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
       <header className='header'>
-        <Link to={'/login'}>
-        {path !== '/login' && <button>Login!</button>}
+        <Link to={'/login'} onClick={() => this.loginButtonFunction()}>
+        {!this.state.user.id && this.state.isOnHomePage && <button>Login!</button>}
         </Link>
         <Link to={'/'}>
         {this.state.user.id && <button onClick={this.handleLogout}>Logout</button>}
