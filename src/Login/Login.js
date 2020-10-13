@@ -10,7 +10,6 @@ class Login extends Component {
     this.state = {
       email: '',
       password: ''
-      //name: 'Olivia', email: 'olivia@turing.io', password: 'pword'
     }
   }
 

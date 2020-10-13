@@ -14,7 +14,6 @@ class MovieGrid extends Component {
   async componentDidMount() {
     const allMovies = await ApiCalls.getAllMovies()
     this.setState({movies: allMovies.movies})
-    console.log("allMovies", allMovies.movies)
   }
 
   render() {
