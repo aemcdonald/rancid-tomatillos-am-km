@@ -14,7 +14,6 @@ class App extends Component {
     this.state = {
       user: {},
       isOnHomePage: true
-      //we will want these to be empty strings eventually...
     }
   }
 
@@ -24,11 +23,7 @@ class App extends Component {
 
   handleLoginSubmit = (userInfo) => {
     ApiCalls.postUserLogin(userInfo)
-    .then(data => {console.log(data)
-    this.updateCurrentUser(data)
-    // return data
-    //can use the data returned here to grab user ID later...
-    })
+    .then(data => this.updateCurrentUser(data))
   }
 
   handleLogout = () => {
@@ -42,8 +37,6 @@ class App extends Component {
   }
 
   render() {
-    let path = window.location.pathname
-    console.log(window.location.pathname)
     return (
       <main className='App'>
       <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>

@@ -11,7 +11,6 @@ class MovieView extends Component {
   }
   async componentDidMount() {
     const singleMovieInfo = await ApiCalls.getSingleMovie(this.props.match.params.movieId)
-    console.log("singleMovieInfo", singleMovieInfo)
     this.setState({movie: singleMovieInfo.movie})
   }
   render() {
