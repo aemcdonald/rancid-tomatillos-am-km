@@ -56,8 +56,8 @@ class App extends Component {
             <Login {...props} handleSubmit={this.handleLoginSubmit} />
           )}
         />
-        <Route exact path="/" render={() => (
-          <MovieGrid currentUserId={78} />
+        <Route exact path="/" render={(props) => (
+          <MovieGrid {...props} currentUserId={this.state.user.id} />
           )}
         />
         <Route path="/:movieId" component={MovieView} />
