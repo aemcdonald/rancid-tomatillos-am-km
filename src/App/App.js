@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { withRouter, Route, Switch, Link } from 'react-router-dom';
 import MovieGrid from '../MovieGrid/MovieGrid.js';
 import MovieView from '../MovieView/MovieView.js';
 import ApiCalls from '../ApiCalls.js';
@@ -60,10 +60,13 @@ export class App extends Component {
           <MovieGrid {...props} currentUserId={this.state.user.id} />
           )}
         />
-        <Route path="/:movieId" component={MovieView} />
+        <Route path="/:movieId" render={(props) => (
+          <MovieView {...props} currentUserId={this.state.user.id} />
+          )}
+          />
       </Switch>
       </main>
     )
   }
 }
-export default App
+export default withRouter(App)
