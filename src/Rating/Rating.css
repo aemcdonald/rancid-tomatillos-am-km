@@ -1,0 +1,10 @@
+.stars {
+  display: flex !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.react-stars {
+  display: flex;
+  justify-content: center;
+}
