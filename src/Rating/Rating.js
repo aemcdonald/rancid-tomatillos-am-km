@@ -7,22 +7,24 @@ class Rating extends Component {
     super(props);
     this.state = {
       rating: this.props.userRating,
-      rated: this.props.rated
+      rated: this.props.rated,
+      currentUser: this.props.currentUser
     }
   }
-  updateUserRating = (event) => {
-    console.log("updateUserRating");
+  handleUserInput = async (event) => {
+    const newRating = parseInt(event.target.value)
+    const ratingInfo = { movie_id: this.props.currentMovie.id, rating: newRating }
+    const updatedRating = await ApiCalls.postNewRating(this.state.currentUser, ratingInfo)
+    this.props.updateRating(this.props.currentMovie.id)
+    this.setState({rating: {rating: newRating}})
   }
-  handleUserInput = (newRating) => {
-    console.log("handleUserInput")
-  }
+
   render() {
-    console.log("renderrate", this.state);
     return (
       <section>
         <h2>{this.state.rated && `Your Rating: ${this.state.rating.rating}`}</h2>
         <h4>Add a rating:</h4>
-        <input onChange={this.updateUserRating} value={1} type="number" min="1" max="10"></input>
+        <input onChange={this.handleUserInput} type="number" min="1" max="10"></input>
       </section>
     )
   }
