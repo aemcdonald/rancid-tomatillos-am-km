@@ -3,11 +3,6 @@ import Rating from '../Rating/Rating.js';
 import './MovieCard.css';
 
 
-// <h4>{movie.userRating && `Your Rating: ${movie.userRating.rating}`}</h4>
-// <h4>{!movie.userRating && userId && `Add your rating`}</h4>
-// <h4>{!movie.userRating && !userId && `Sign in to add your rating`}</h4>
-
-
 const MovieCard = ({ movie, history, userId }) => {
   return (
     <section className='movieCard' onClick={() => {
