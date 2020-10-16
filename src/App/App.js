@@ -8,17 +8,17 @@ import './App.css';
 import logo from '../RancidTomLogo.png';
 
 
-class App extends Component {
-  constructor() {
-    super();
+export class App extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       user: {},
       isOnHomePage: true
     }
   }
 
-  updateCurrentUser = (userInfo) => {
-    this.setState(userInfo)
+  updateCurrentUser = ({ user }) => {
+    this.setState({ user }, () => {this.props.history.push('/')})
   }
 
   handleLoginSubmit = (userInfo) => {
