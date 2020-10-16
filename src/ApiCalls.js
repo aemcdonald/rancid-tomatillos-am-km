@@ -33,5 +33,19 @@ const ApiCalls = {
     .catch(error => console.log(error.message))
   },
 
+  postNewRating(userId, ratingInfo) {
+    console.log("ratingInfo", ratingInfo);
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(ratingInfo)
+    })
+    .then(response => response.json())
+    .then(data => console.log('success:', data))
+    .catch(err => console.log('failed', err.message))
+  }
 }
+
 export default ApiCalls;
