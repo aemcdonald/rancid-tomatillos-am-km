@@ -41,12 +41,12 @@ class App extends Component {
       <main className='App'>
       <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
       <header className='header'>
-        <Link to={'/login'} onClick={() => this.loginButtonFunction()}>
-        {!this.state.user.id && this.state.isOnHomePage && <button>Login!</button>}
-        </Link>
-        <Link to={'/'}>
-        {this.state.user.id && <button onClick={this.handleLogout}>Logout</button>}
-        </Link>
+        {!this.state.user.id && this.state.isOnHomePage &&
+        <Link to={'/login'} onClick={() => this.loginButtonFunction()}>Login
+        </Link> }
+        {this.state.user.id &&
+        <Link to={'/'} onClick={() => this.handleLogout()}>Logout
+        </Link> }
         <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
       </header>
       <Switch>
