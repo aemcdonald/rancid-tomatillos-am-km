@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiCalls from '../ApiCalls.js';
+import ReactStars from "react-rating-stars-component";
 import './Rating.css';
 
 class Rating extends Component {
@@ -11,12 +12,11 @@ class Rating extends Component {
       currentUser: this.props.currentUser
     }
   }
-  handleUserInput = async (event) => {
-    const newRating = parseInt(event.target.value)
-    const ratingInfo = { movie_id: this.props.currentMovie.id, rating: newRating }
-    const updatedRating = await ApiCalls.postNewRating(this.state.currentUser, ratingInfo)
-    this.props.updateRating(this.props.currentMovie.id)
-    this.setState({rating: {rating: newRating}})
+  handleUserInput = async (rating) => {
+     const ratingInfo = { movie_id: this.props.currentMovie.id, rating: rating }
+     const updatedRating = await ApiCalls.postNewRating(this.state.currentUser, ratingInfo)
+     this.props.updateRating(this.props.currentMovie.id)
+     this.setState({rating: {rating: rating}})
   }
 
   render() {
@@ -24,13 +24,19 @@ class Rating extends Component {
       <section>
         <h2>{this.state.rated && `Your Rating: ${this.state.rating.rating}`}</h2>
         <h4>Add a rating:</h4>
-        <input onChange={this.handleUserInput} type="number" min="1" max="10"></input>
+        <section className="starsWrapper">
+        <ReactStars
+          classNames="stars"
+          value={this.state.rated && this.state.rating.rating}
+          id="movieViewStars"
+          count={10}
+          onChange={this.handleUserInput}
+          size={24}
+          activeColor="#ffd700"
+        />
+        </section>
       </section>
     )
   }
 }
 export default Rating;
-// value={this.state.gender} onChange={this.handleChange}
-// <h4>{movie.userRating && `Your Rating: ${movie.userRating.rating}`}</h4>
-// <h4>{!movie.userRating && userId && `Click to add rating`}</h4>
-// <h4>{!movie.userRating && !userId && `Sign in to add your rating`}</h4>
