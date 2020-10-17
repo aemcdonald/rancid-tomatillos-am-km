@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { withRouter, Route, Switch, Link } from 'react-router-dom';
 import MovieGrid from '../MovieGrid/MovieGrid.js';
 import MovieView from '../MovieView/MovieView.js';
 import ApiCalls from '../ApiCalls.js';
@@ -8,17 +8,17 @@ import './App.css';
 import logo from '../RancidTomLogo.png';
 
 
-class App extends Component {
-  constructor() {
-    super();
+export class App extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       user: {},
       isOnHomePage: true
     }
   }
 
-  updateCurrentUser = (userInfo) => {
-    this.setState(userInfo)
+  updateCurrentUser = ({ user }) => {
+    this.setState({ user }, () => {this.props.history.push('/')})
   }
 
   handleLoginSubmit = (userInfo) => {
@@ -41,12 +41,12 @@ class App extends Component {
       <main className='App'>
       <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
       <header className='header'>
-        <Link to={'/login'} onClick={() => this.loginButtonFunction()}>
-        {!this.state.user.id && this.state.isOnHomePage && <button>Login!</button>}
-        </Link>
-        <Link to={'/'}>
-        {this.state.user.id && <button onClick={this.handleLogout}>Logout</button>}
-        </Link>
+        {!this.state.user.id && this.state.isOnHomePage &&
+        <Link to={'/login'} onClick={() => this.loginButtonFunction()}>Login
+        </Link> }
+        {this.state.user.id &&
+        <Link to={'/'} onClick={() => this.handleLogout()}>Logout
+        </Link> }
         <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
       </header>
       <Switch>
@@ -56,11 +56,17 @@ class App extends Component {
             <Login {...props} handleSubmit={this.handleLoginSubmit} />
           )}
         />
-        <Route path="/" component={MovieGrid} exact />
-        <Route path="/:movieId" component={MovieView} />
+        <Route exact path="/" render={(props) => (
+          <MovieGrid {...props} currentUserId={this.state.user.id} />
+          )}
+        />
+        <Route path="/:movieId" render={(props) => (
+          <MovieView {...props} currentUserId={this.state.user.id} />
+          )}
+          />
       </Switch>
       </main>
     )
   }
 }
-export default App
+export default withRouter(App)

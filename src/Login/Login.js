@@ -24,7 +24,6 @@ class Login extends Component {
     }
     if(this.formFulfilled()) {
       this.props.handleSubmit(loginInfo)
-      this.props.history.push('/')
     }
   }
 

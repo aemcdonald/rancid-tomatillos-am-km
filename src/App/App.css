@@ -17,7 +17,7 @@ header {
   height: 20vmin;
   justify-self: center;
 }
-button {
+a {
   background-color: #262626;
   color: #b8b8b8;
   border: none;
@@ -27,6 +27,8 @@ button {
   font-size: 1em;
   margin: 3px;
   cursor: pointer;
+  text-decoration: none;
+  margin: 5px;
 }
 .greeting {
   display: inline-flex;

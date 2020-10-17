@@ -1,14 +1,19 @@
 import React from 'react';
+import Rating from '../Rating/Rating.js';
 import './MovieCard.css';
 
-const MovieCard = ({ title, avgRating, photo, releaseDate, history, movieId }) => {
+
+const MovieCard = ({ movie, history, userId }) => {
   return (
     <section className='movieCard' onClick={() => {
-      history.push(`/${movieId}`)}}>
-      <h1 className='cardTitle'>{title}</h1>
-      <h4>Average Rating: {parseFloat(avgRating).toFixed(1)}</h4>
-      <img className='poster' src={photo} alt={title + ' movie poster'}/>
-      <h5>Release Date: {releaseDate}</h5>
+      history.push(`/${movie.id}`)}}>
+      <h1 className='cardTitle'>{movie.title}</h1>
+      <h4>Average Rating: {parseFloat(movie.average_rating).toFixed(1)}</h4>
+      <h4>{movie.userRating && `Your Rating: ${movie.userRating.rating}`}</h4>
+      <h4>{!movie.userRating && userId && `Click to add rating`}</h4>
+      <h4>{!movie.userRating && !userId && `Sign in to add your rating`}</h4>
+      <img className='poster' src={movie.poster_path} alt={movie.title + ' movie poster'}/>
+      <h5>Release Date: {movie.release_date}</h5>
     </section>
   )
 }
