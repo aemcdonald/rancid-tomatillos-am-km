@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import ApiCalls from '../ApiCalls.js';
@@ -16,7 +17,11 @@ describe('MovieGrid', () => {
       ]}
     )
 
-    render(<MovieGrid />);
+    render(
+      <BrowserRouter>
+        <MovieGrid />
+      </BrowserRouter>
+    );
 
     const movie1 = await waitFor(() => screen.getByText('Movie 1'));
     const movie2 = await waitFor(() => screen.getByText('Movie 2'));
@@ -26,4 +31,19 @@ describe('MovieGrid', () => {
     expect(movie2).toBeInTheDocument();
     expect(movie3).toBeInTheDocument();
   });
+
+  it('should render an error if no movies are found', async () => {
+    ApiCalls.getAllMovies.mockResolvedValueOnce(
+      { error: 'No movies found, please try again' }
+    )
+
+    render(
+      <BrowserRouter>
+        <MovieGrid />
+      </BrowserRouter>
+    );
+
+    const errorMessage = await waitFor(() => screen.getByText('No movies found, please try again'));
+    expect(errorMessage).toBeInTheDocument();
+  })
 })
