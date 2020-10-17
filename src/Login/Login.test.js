@@ -49,4 +49,20 @@ describe('Login', () => {
     const welcomeMessage = await waitFor(() => screen.getByText('Welcome, Olivia!'))
     expect(welcomeMessage).toBeInTheDocument();
   })
+
+  it('should display an error message if user name or password is incorrect', async () => {
+    ApiCalls.postUserLogin.mockResolvedValueOnce(
+      { error: 'Incorrect username or password' }
+    )
+
+    render(<BrowserRouter><App /></BrowserRouter>);
+
+    userEvent.click(screen.getByText('Login'));
+    userEvent.type(screen.getByPlaceholderText('Email'), 'sadpathtest@turing.io');
+    userEvent.type(screen.getByPlaceholderText('Password'), 'incorrectpword');
+    userEvent.click(screen.getByText('Login'));
+
+    const errorMessage = await waitFor(() => screen.getByText('Incorrect username or password'));
+    expect(errorMessage).toBeInTheDocument();
+  })
 })
