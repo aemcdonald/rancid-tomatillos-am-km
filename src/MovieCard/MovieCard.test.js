@@ -1,9 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import MovieCard from './MovieCard.js';
+import ApiCalls from '../ApiCalls.js';
+import MovieGrid from '../MovieGrid/MovieGrid.js';
+jest.mock('../ApiCalls.js');
 
 describe('MovieCard', () => {
   it('should render a movie card', () => {
@@ -24,15 +27,38 @@ describe('MovieCard', () => {
     expect(screen.getByText('Release Date: 2020-09-29')).toBeInTheDocument();
   })
 
-  // it('should display average rating with one decimal place', () => {
-  //   render(
-  //     <MovieCard
-  //       key={1}
-  //       avgRating={3.3333333}
-  //       title="Titanic"
-  //       photo="image path"
-  //       releaseDate={"2020-09-29"}
-  //     />);
-  //   expect(screen.getByText('Average Rating: 3.3')).toBeInTheDocument();
-  // })
+  it('should display average rating with one decimal place', () => {
+    const testMovie = { average_rating: 3.3333 }
+    render(
+      <BrowserRouter>
+        <MovieCard
+          key={1}
+          movie={testMovie}
+          userId={88}
+        />
+      </BrowserRouter>
+    );
+     expect(screen.getByText('Average Rating: 3.3')).toBeInTheDocument();
+   })
+
+   it('should display a logged in user\'s rating if user has rated movie', async () => {
+     ApiCalls.getAllMovies.mockResolvedValue(
+       { movies: [ {id: 1, title: 'Mulan'} ] }
+     )
+
+     ApiCalls.getUserRatings.mockResolvedValue(
+       { ratings: [ {id: 1, movie_id: 1, rating: 3} ] }
+     )
+
+     render(
+       <BrowserRouter>
+        <MovieGrid currentUserId={88}/>
+       </BrowserRouter>
+     )
+
+     const rating = await waitFor(() => screen.getByText('Your Rating: 3'));
+     expect(rating).toBeInTheDocument();
+    })
+   //conditional render: if no user rating, "click to add rating renders"
+   //conditional render: if no user id, "sign in to add your rating"
 })
