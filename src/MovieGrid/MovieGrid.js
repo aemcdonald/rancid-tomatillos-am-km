@@ -20,11 +20,14 @@ class MovieGrid extends Component {
         foundMovie.userRating = rating
       })
     }
-    this.setState({movies: allMovies.movies})
+    if (allMovies.movies) {
+      this.setState({movies: allMovies.movies})
+    } else {
+      this.setState({error: allMovies.error})
+    }
   }
 
   render() {
-    console.log(this.state.movies);
     const movieCards = this.state.movies.map(movie => {
       return (
         <MovieCard
@@ -36,7 +39,7 @@ class MovieGrid extends Component {
     })
     return (
       <div className='movies-container'>
-        {movieCards}
+        {movieCards.length ? movieCards : this.state.error}
       </div>
     )
   }
