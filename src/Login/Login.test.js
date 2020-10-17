@@ -30,17 +30,18 @@ describe('Login', () => {
 
   it('should welcome the user after submitting login info', async () => {
     ApiCalls.postUserLogin.mockResolvedValueOnce(
-      {user: {id: 888, name: 'Olivia', email: 'olivia@turing.io'} }
+      { user: {id: 888, name: 'Olivia', email: 'olivia@turing.io'} }
     )
     ApiCalls.getAllMovies.mockResolvedValue(
-      { movies: [
-        { id: 1, title: 'Mulan' },
-        { id: 2, title: 'Titanic' },
-        { id: 3, title: 'Kill Bill' }
-      ]}
+      { movies: [ {id: 1, title: 'Mulan'} ] }
     )
+
+    ApiCalls.getUserRatings.mockResolvedValueOnce(
+      { ratings: [ {id: 1, movie_id: 1, rating: 1} ] }
+    )
+
     render(<BrowserRouter><App /></BrowserRouter>)
-    userEvent.click(screen.getByText('Login!'))
+    userEvent.click(screen.getByText('Login'))
     userEvent.type(screen.getByPlaceholderText('Email'), 'olivia@turing.io')
     userEvent.type(screen.getByPlaceholderText('Password'), 'pword')
     userEvent.click(screen.getByText('Login'))
