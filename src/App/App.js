@@ -61,8 +61,8 @@ export class App extends Component {
             <Login {...props} handleSubmit={this.handleLoginSubmit} errorMessage={this.state.error} />
           )}
         />
-        <Route exact path="/" render={(props) => (
-          <MovieGrid {...props} currentUserId={this.state.user.id} />
+        <Route exact path="/" render={() => (
+          <MovieGrid currentUserId={this.state.user.id} />
           )}
         />
         <Route path="/:movieId" render={(props) => (
