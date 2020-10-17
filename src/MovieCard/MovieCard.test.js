@@ -77,6 +77,20 @@ describe('MovieCard', () => {
 
      const rating = await waitFor(() => screen.getByText('Click to add rating'));
      expect(rating).toBeInTheDocument();
+   }) 
+
+   it('should prompt user to sign in to add a rating', async () => {
+     ApiCalls.getAllMovies.mockResolvedValue(
+       { movies: [ {id: 1, title: 'Mulan'} ] }
+     )
+
+     render(
+       <BrowserRouter>
+        <MovieGrid currentUserId={undefined}/>
+       </BrowserRouter>
+     )
+
+     const signInMessage = await waitFor(() => screen.getByText('Sign in to add your rating'));
+     expect(signInMessage).toBeInTheDocument();
    })
-   //conditional render: if no user id, "sign in to add your rating"
 })
