@@ -17,24 +17,56 @@ describe('MovieView', () => {
         { id: 1, title: 'Mulan' },
         { id: 2, title: 'Titanic' },
         { id: 3, title: 'Kill Bill' }
-      ]}
+        ]
+      }
     )
 
-    render(<BrowserRouter><App /></BrowserRouter>);
-    const movieTitle = await waitFor(() => screen.getByText('Mulan'));
-    //screen.debug()
-    expect(movieTitle).toBeInTheDocument();
-    userEvent.click(screen.getByAltText('Mulan movie poster'));
-    //
     ApiCalls.getSingleMovie.mockResolvedValueOnce(
       { movie: { id: 1, title: 'Mulan', release_date: '2020-09-04' } }
     )
-    //
-    // const releaseDate = await waitFor(() => screen.getByText('2020-09-04'))
 
-    //
-    // render(<MovieView />);
+    ApiCalls.getUserRatings.mockResolvedValueOnce(
+      { ratings: [ {id: 1, movie_id: 1, rating: 1} ] }
+    )
 
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
 
+    const movieTitle = await waitFor(() => screen.getByText('Mulan'));
+    expect(movieTitle).toBeInTheDocument();
+
+    userEvent.click(screen.getByAltText('Mulan movie poster'));
+
+    const releaseDate = await waitFor(() => screen.getByText('Release Date: 2020-09-04'));
+    expect(releaseDate).toBeInTheDocument();
   });
+
+  it('should display a user\'s rating for a movie they have rated when logged in', async () => {
+    const mockProps = {match: { params: { movieId: '1'} } }
+
+    ApiCalls.getAllMovies.mockResolvedValue(
+      { movies: [ {id: 1, title: 'Mulan'} ] }
+    )
+
+    ApiCalls.getUserRatings.mockResolvedValue(
+      { ratings: [ {id: 1, movie_id: 1, rating: 3} ] }
+    )
+
+    ApiCalls.getSingleMovie.mockResolvedValue(
+      {movie: {id: 1, title: 'Mulan', rating: 3 }}
+    )
+
+    render(
+      <BrowserRouter>
+        <MovieView {...mockProps} currentUserId={88} />
+      </BrowserRouter>
+    )
+
+    const rating = await waitFor(() => screen.getByText('Your Rating: 3'));
+    expect(rating).toBeInTheDocument();
+  })
+  //user is NOT logged in
 })
