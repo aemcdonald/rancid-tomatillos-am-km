@@ -34,7 +34,6 @@ const ApiCalls = {
   },
 
   postNewRating(userId, ratingInfo) {
-    console.log("ratingInfo", ratingInfo);
     return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`, {
       method: 'POST',
       headers: {
@@ -43,7 +42,15 @@ const ApiCalls = {
       body: JSON.stringify(ratingInfo)
     })
     .then(response => response.json())
-    .then(data => console.log('success:', data))
+    .then(data => data)
+    .catch(err => console.log('failed', err.message))
+  },
+
+  changeRating(userId, ratingId) {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${ratingId}`, {
+      method: 'DELETE',
+    })
+    .then(response => response.json())
     .catch(err => console.log('failed', err.message))
   }
 }
