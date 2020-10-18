@@ -66,3 +66,8 @@ class Login extends Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  handleSubmit: PropTypes.func,
+  errorMessage: PropTypes.string
+};
