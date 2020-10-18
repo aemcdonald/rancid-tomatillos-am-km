@@ -50,3 +50,11 @@ class Rating extends Component {
 }
 
 export default Rating;
+
+Rating.propTypes = {
+  updateRating: PropTypes.number,
+  currentUser: PropTypes.number,
+  userRating: PropTypes.object,
+  rated: PropTypes.bool,
+  currentMovie: PropTypes.object
+};
