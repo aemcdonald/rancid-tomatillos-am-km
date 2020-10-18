@@ -7,16 +7,24 @@ class Rating extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: this.props.userRating,
-      rated: this.props.rated,
-      currentUser: this.props.currentUser
+      rating: {},
+      rated: false,
+      currentUser: 0
     }
   }
+
   handleUserInput = async (rating) => {
-     const ratingInfo = { movie_id: this.props.currentMovie.id, rating: rating }
-     const updatedRating = await ApiCalls.postNewRating(this.state.currentUser, ratingInfo)
+    const ratingInfo = { movie_id: this.props.currentMovie.id, rating: rating }
+     if (this.props.rated) {
+       await ApiCalls.changeRating(this.state.currentUser, this.state.rating.id)
+     }
+     const newRating = await ApiCalls.postNewRating(this.state.currentUser, ratingInfo)
      this.props.updateRating(this.props.currentMovie.id)
-     this.setState({rating: {rating: rating}})
+     this.setState({rating: { rating: newRating.rating.rating}})
+  }
+
+  componentDidMount() {
+    this.setState({ rating: this.props.userRating, rated: this.props.rated, currentUser: this.props.currentUser})
   }
 
   render() {
@@ -39,4 +47,5 @@ class Rating extends Component {
     )
   }
 }
+
 export default Rating;
