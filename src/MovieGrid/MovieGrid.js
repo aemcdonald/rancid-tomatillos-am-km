@@ -46,3 +46,7 @@ class MovieGrid extends Component {
   }
 }
 export default MovieGrid;
+
+MovieGrid.propTypes = {
+  currentUserId: PropTypes.number
+};
