@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ApiCalls from '../ApiCalls.js'
 import Rating from '../Rating/Rating.js';
 import './MovieView.css';

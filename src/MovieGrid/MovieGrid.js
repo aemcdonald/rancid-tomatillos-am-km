@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from '../MovieCard/MovieCard.js';
 import ApiCalls from '../ApiCalls.js';
 import './MovieGrid.css';
