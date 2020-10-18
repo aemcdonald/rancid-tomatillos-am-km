@@ -33,8 +33,9 @@ class MovieView extends Component {
           <h4 className='movieTagline'>{this.state.movie.tagline}</h4>
           <h4 className='movieOverview'>{this.state.movie.overview}</h4>
           <h5>Release Date: {this.state.movie.release_date}</h5>
-          {this.state.hasRating && <Rating updateRating={this.getUserRating} currentUser={this.props.currentUserId} userRating={this.state.userRating} rated={true} currentMovie={this.state.movie}/>}
-          {!this.state.hasRating && <Rating updateRating={this.getUserRating} currentUser={this.props.currentUserId} rated={false} currentMovie={this.state.movie}/>}
+          <h4>{!this.props.currentUserId && 'Sign in to rate this movie!'}</h4>
+          {this.props.currentUserId && this.state.hasRating && <Rating updateRating={this.getUserRating} currentUser={this.props.currentUserId} userRating={this.state.userRating} rated={true} currentMovie={this.state.movie}/>}
+          {this.props.currentUserId && !this.state.hasRating && <Rating updateRating={this.getUserRating} currentUser={this.props.currentUserId} rated={false} currentMovie={this.state.movie}/>}
           <h6>Average Rating: {parseFloat(this.state.movie.average_rating).toFixed(1)}</h6>
         </section>
       </section>
