@@ -22,3 +22,9 @@ const MovieCard = ({ movie, userId }) => {
   )
 }
 export default MovieCard;
+
+MovieCard.propTypes = {
+  key: PropTypes.number,
+  movie: PropTypes.object,
+  userId: PropTypes.number
+};
