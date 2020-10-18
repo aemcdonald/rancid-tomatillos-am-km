@@ -13,6 +13,7 @@ class MovieView extends Component {
       hasRating: false
     }
   }
+
   getUserRating = async (singleMovieId) => {
     const userRatings = await ApiCalls.getUserRatings(this.props.currentUserId)
     if(userRatings.ratings) {
@@ -20,11 +21,15 @@ class MovieView extends Component {
       rating && this.setState({userRating: rating, hasRating: true})
     }
   }
+
   async componentDidMount() {
     const singleMovieInfo = await ApiCalls.getSingleMovie(this.props.match.params.movieId)
-    this.getUserRating(singleMovieInfo.movie.id)
+    if (this.props.currentUserId) {
+      this.getUserRating(singleMovieInfo.movie.id)
+    }
     this.setState({movie: singleMovieInfo.movie})
   }
+
   render() {
     return (
       <section className='movieView' style={{backgroundImage: 'url(' + this.state.movie.backdrop_path + ')' }}>
