@@ -43,3 +43,7 @@ class MovieView extends Component {
 }
 
 export default MovieView;
+
+MovieView.propTypes = {
+  currentUserId: PropTypes.number
+};
