@@ -35,8 +35,8 @@ class MovieView extends Component {
     if (this.state.hasRating) {
       await ApiCalls.changeRating(this.props.currentUserId, this.state.userRating.id)
     }
-   await ApiCalls.postNewRating(this.props.currentUserId, ratingInfo)
-   this.getUserRating(this.state.movie.id)
+    await ApiCalls.postNewRating(this.props.currentUserId, ratingInfo)
+    this.getUserRating(this.state.movie.id)
   }
 
   render() {
