@@ -50,8 +50,10 @@ const ApiCalls = {
     return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${ratingId}`, {
       method: 'DELETE',
     })
-    .then(response => response.json())
-    .catch(err => console.log('failed', err.message))
+    .then(response => {
+      if (!response.ok) throw Error
+    })
+    .catch(err => console.log('failed', err.message));
   }
 }
 
