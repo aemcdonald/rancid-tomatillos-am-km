@@ -31,7 +31,7 @@ describe('Rating', () => {
     const rating = await waitFor(() => screen.getByText('Your Rating: 5'))
 
     expect(rating).toBeInTheDocument();
-  })
+  });
 
   it('should display a not rated message if the movie is not rated', async () => {
     const mockProps = {match: {params: {movieId: 1234}}}
@@ -54,7 +54,7 @@ describe('Rating', () => {
     const ratingMessage = await waitFor(() => screen.getByText('Not yet rated'))
 
     expect(ratingMessage).toBeInTheDocument();
-  })
+  });
 
    it('should fire a given function when a user rates a movie', async () => {
      const fakeFunction = jest.fn();
@@ -69,7 +69,7 @@ describe('Rating', () => {
 
     userEvent.click(star)
     expect(fakeFunction).toHaveBeenCalledTimes(1);
-  })
+  });
 
   it('should allow a user to edit an existing rating', async () => {
     const mockProps = { match: { params: { movieId: 1234 } } }
@@ -104,20 +104,5 @@ describe('Rating', () => {
 
     const rating = await waitFor(() => screen.getByText('Your Rating: 1'))
     expect(rating).toBeInTheDocument()
-  })
-
-
-  // display
-    //show 10 stars
-    //should fill the correct number of stars??
-
-  // logged in
-      //rated movie: Your rating 88832893298329
-      //not rated movie: Not yet rated
-      //add rating
-      //edit rating
-
-  //SAD PATH
-  //not logged in:
-    //we should test this on movieview
-})
+  });
+});
