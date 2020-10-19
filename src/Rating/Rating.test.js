@@ -32,19 +32,25 @@ describe('Rating', () => {
 
     expect(rating).toBeInTheDocument();
   })
-  it('should display a sign in prompt if the movie is rated', async () => {
+  it('should display a not rated message if the movie is not rated', async () => {
     const mockProps = {match: {params: {movieId: 1234}}}
     ApiCalls.getSingleMovie.mockResolvedValue(
       { movie: {average_rating: 6, id: 1234, title: "Mulan"}}
     )
+    ApiCalls.getUserRatings.mockResolvedValueOnce(
+      { ratings: [
+        {id: 2939, user_id: 88, movie_id: 5678, rating: 10},
+        {id: 2130, user_id: 88, movie_id: 9876, rating: 5}
+      ]}
+    )
 
     render(
       <BrowserRouter>
-        <MovieView {...mockProps} />
+        <MovieView {...mockProps} currentUserId={88}/>
       </BrowserRouter>
     );
 
-    const ratingMessage = await waitFor(() => screen.getByText('Sign in to rate this movie!'))
+    const ratingMessage = await waitFor(() => screen.getByText('Not yet rated'))
 
     expect(ratingMessage).toBeInTheDocument();
   })
