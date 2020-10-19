@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter, Route, Switch, Link } from 'react-router-dom';
 import MovieGrid from '../MovieGrid/MovieGrid.js';
 import MovieView from '../MovieView/MovieView.js';

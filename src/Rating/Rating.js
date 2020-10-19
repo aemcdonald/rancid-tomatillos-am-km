@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ApiCalls from '../ApiCalls.js';
 import ReactStars from "react-rating-stars-component";
 import './Rating.css';
 
