@@ -69,7 +69,43 @@ describe('Rating', () => {
 
     userEvent.click(star)
     expect(fakeFunction).toHaveBeenCalledTimes(1);
-  });
+  })
+
+  it('should allow a user to edit an existing rating', async () => {
+    const mockProps = { match: { params: { movieId: 1234 } } }
+    ApiCalls.getSingleMovie.mockResolvedValueOnce(
+      { movie: { average_rating: 6, id: 1234, title: "Mulan" } }
+    )
+    .mockResolvedValueOnce(
+      { movie: { average_rating: 6, id: 1234, title: "Mulan" } }
+    )
+    ApiCalls.getUserRatings.mockResolvedValueOnce(
+      { ratings: [
+        { id: 2939, user_id: 88, movie_id: 5678, rating: 10 },
+        { id: 2130, user_id: 88, movie_id: 1234, rating: 5 }
+      ]}
+    )
+    .mockResolvedValueOnce(
+      { ratings: [
+        { id: 2939, user_id: 88, movie_id: 5678, rating: 10 },
+        { id: 2130, user_id: 88, movie_id: 1234, rating: 1 }
+      ]}
+    )
+
+    render(
+      <BrowserRouter>
+        <MovieView {...mockProps} currentUserId={88}/>
+      </BrowserRouter>
+    );
+
+    const star1 = screen.getAllByText('★')[0]
+
+    userEvent.click(star1)
+
+    const rating = await waitFor(() => screen.getByText('Your Rating: 1'))
+    expect(rating).toBeInTheDocument()
+  })
+
 
   // display
     //show 10 stars
