@@ -32,6 +32,7 @@ describe('Rating', () => {
 
     expect(rating).toBeInTheDocument();
   })
+
   it('should display a not rated message if the movie is not rated', async () => {
     const mockProps = {match: {params: {movieId: 1234}}}
     ApiCalls.getSingleMovie.mockResolvedValue(
@@ -54,6 +55,21 @@ describe('Rating', () => {
 
     expect(ratingMessage).toBeInTheDocument();
   })
+
+   it('should fire a given function when a user rates a movie', async () => {
+     const fakeFunction = jest.fn();
+    render(
+      <Rating addRating={fakeFunction} />
+    )
+
+    const ratingMessage = await waitFor(() => screen.getByText('Not yet rated'))
+    expect(ratingMessage).toBeInTheDocument();
+
+    const star = screen.getAllByText('★')[6]
+
+    userEvent.click(star)
+    expect(fakeFunction).toHaveBeenCalledTimes(1);
+  });
 
   // display
     //show 10 stars
