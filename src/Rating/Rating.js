@@ -15,7 +15,7 @@ const Rating = (props) => {
           value={props.userRating}
           id="movieViewStars"
           count={10}
-          // onChange={this.handleUserInput}
+          onChange={props.addRating}
           size={24}
           activeColor="#ffd700"
         />
