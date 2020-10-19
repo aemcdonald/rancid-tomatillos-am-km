@@ -32,6 +32,22 @@ describe('Rating', () => {
 
     expect(rating).toBeInTheDocument();
   })
+  it('should display a sign in prompt if the movie is rated', async () => {
+    const mockProps = {match: {params: {movieId: 1234}}}
+    ApiCalls.getSingleMovie.mockResolvedValue(
+      { movie: {average_rating: 6, id: 1234, title: "Mulan"}}
+    )
+
+    render(
+      <BrowserRouter>
+        <MovieView {...mockProps} />
+      </BrowserRouter>
+    );
+
+    const ratingMessage = await waitFor(() => screen.getByText('Sign in to rate this movie!'))
+
+    expect(ratingMessage).toBeInTheDocument();
+  })
 
   // display
     //show 10 stars
