@@ -29,10 +29,10 @@ class MovieGrid extends Component {
   }
 
   render() {
-    const movieCards = this.state.movies.map(movie => {
+    const movieCards = this.state.movies.map((movie, index) => {
       return (
         <MovieCard
-          key={movie.id}
+          key={index}
           movie={movie}
           userId={this.props.currentUserId}
         />
