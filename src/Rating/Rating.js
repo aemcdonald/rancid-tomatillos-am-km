@@ -26,10 +26,7 @@ const Rating = (props) => {
 
 export default Rating;
 
-// Rating.propTypes = {
-//   updateRating: PropTypes.number,
-//   currentUser: PropTypes.number,
-//   userRating: PropTypes.object,
-//   rated: PropTypes.bool,
-//   currentMovie: PropTypes.object
-// };
+Rating.propTypes = {
+  userRating: PropTypes.number,
+  addRating: PropTypes.func
+};
