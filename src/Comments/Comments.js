@@ -45,3 +45,8 @@ class Comments extends Component {
   }
 }
 export default Comments;
+
+Comments.propTypes = {
+  movieId: PropTypes.string,
+  userName: PropTypes.object
+};
