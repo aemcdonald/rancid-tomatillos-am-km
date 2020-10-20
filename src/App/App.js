@@ -68,7 +68,7 @@ export class App extends Component {
           )}
         />
         <Route path="/:movieId" render={(props) => (
-          <MovieView {...props} currentUserId={this.state.user.id} />
+          <MovieView {...props} currentUserId={this.state.user} />
           )}
           />
       </Switch>
