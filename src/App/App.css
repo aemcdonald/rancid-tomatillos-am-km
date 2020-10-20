@@ -17,23 +17,25 @@ header {
   height: 20vmin;
   justify-self: center;
 }
-a {
+
+.loginLogout {
   background-color: #262626;
   color: #b8b8b8;
+  text-align: center;
   border: none;
   border-right: solid #b8b8b8;
   height: 2em;
   width: 5em;
-  font-size: 1em;
-  margin: 3px;
+  font-size: 1.1em;
   cursor: pointer;
+  padding-top: 10px;
   text-decoration: none;
-  margin: 5px;
 }
 .greeting {
   display: inline-flex;
   color: #b8b8b8;
   font-size: 1.5em;
+  padding-top: 4px;
   margin: 3px 20px;
 }
 
