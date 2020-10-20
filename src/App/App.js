@@ -36,7 +36,9 @@ export class App extends Component {
       user: {},
       isOnHomePage: true
     })
+    window.location.reload();
   }
+
   loginButtonFunction = () => {
     this.setState({isOnHomePage: false})
   }
