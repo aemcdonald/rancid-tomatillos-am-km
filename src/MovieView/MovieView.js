@@ -16,7 +16,7 @@ class MovieView extends Component {
   }
 
   getUserRating = async (singleMovieId) => {
-    const userRatings = await ApiCalls.getUserRatings(this.props.currentUserId)
+    const userRatings = await ApiCalls.getUserRatings(this.props.currentUserId.id)
     if(userRatings.ratings) {
       const rating = userRatings.ratings.find(rating => rating.movie_id === singleMovieId)
       rating && this.setState({userRating: rating, hasRating: true})
