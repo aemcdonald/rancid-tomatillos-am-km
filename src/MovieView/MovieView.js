@@ -49,10 +49,10 @@ class MovieView extends Component {
         <h4 className='movieOverview'>{this.state.movie.overview}</h4>
         <h5>Release Date: {this.state.movie.release_date}</h5>
         <h4>{!this.props.currentUserId && 'Sign in to rate this movie!'}</h4>
-        {this.props.currentUserId && this.state.hasRating && <Rating userRating={this.state.userRating.rating} addRating={this.handleUserInput}/>}
-        {this.props.currentUserId && !this.state.hasRating && <Rating addRating={this.handleUserInput}/>}
+        {this.props.currentUserId.id && this.state.hasRating && <Rating userRating={this.state.userRating.rating} addRating={this.handleUserInput}/>}
+        {this.props.currentUserId.id && !this.state.hasRating && <Rating addRating={this.handleUserInput}/>}
         <h6>Average Rating: {parseFloat(this.state.movie.average_rating).toFixed(1)}</h6>
-        <Comments />
+        <Comments movieId={this.props.match.params.movieId} userId={this.props.currentUserId} />
       </section>
     </section>
     )
