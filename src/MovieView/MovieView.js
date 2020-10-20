@@ -34,9 +34,9 @@ class MovieView extends Component {
   handleUserInput = async (rating) => {
     const ratingInfo = { movie_id: this.state.movie.id, rating: rating }
     if (this.state.hasRating) {
-      await ApiCalls.changeRating(this.props.currentUserId, this.state.userRating.id)
+      await ApiCalls.changeRating(this.props.currentUserId.id, this.state.userRating.id)
     }
-    await ApiCalls.postNewRating(this.props.currentUserId, ratingInfo)
+    await ApiCalls.postNewRating(this.props.currentUserId.id, ratingInfo)
     this.getUserRating(this.state.movie.id)
   }
 
