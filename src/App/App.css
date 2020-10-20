@@ -8,8 +8,9 @@ body {
   height: 100%;
 }
 header {
-  text-align: left;
-  display: flex;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2% 95%;
   background-color: #262626;
 }
 .logo {
@@ -32,11 +33,12 @@ header {
   text-decoration: none;
 }
 .greeting {
-  display: inline-flex;
+  display: inline-grid;
   color: #b8b8b8;
   font-size: 1.5em;
   padding-top: 4px;
   margin: 3px 20px;
+  grid-column: 2;
 }
 
 @media screen and (max-height: 600px) {
