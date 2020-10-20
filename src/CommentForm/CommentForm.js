@@ -37,3 +37,8 @@ class CommentForm extends Component {
   }
 }
 export default CommentForm;
+
+CommentForm.propTypes = {
+  addComment: PropTypes.func,
+  userName: PropTypes.string
+};
