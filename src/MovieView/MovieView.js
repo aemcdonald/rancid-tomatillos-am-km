@@ -25,7 +25,7 @@ class MovieView extends Component {
 
   async componentDidMount() {
     const singleMovieInfo = await ApiCalls.getSingleMovie(this.props.match.params.movieId)
-    if (this.props.currentUserId) {
+    if (this.props.currentUserId.id) {
       this.getUserRating(singleMovieInfo.movie.id)
     }
     this.setState({movie: singleMovieInfo.movie})
