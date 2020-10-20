@@ -7,4 +7,5 @@ input {
 }
 .errorMessage {
   font-size: .75em;
+  color: #a03d2c;
 }

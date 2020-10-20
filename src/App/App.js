@@ -13,7 +13,8 @@ export class App extends Component {
     super(props);
     this.state = {
       user: {},
-      isOnHomePage: true
+      isOnHomePage: true,
+      error: ''
     }
   }
 
@@ -21,9 +22,13 @@ export class App extends Component {
     this.setState({ user }, () => {this.props.history.push('/')})
   }
 
-  handleLoginSubmit = (userInfo) => {
-    ApiCalls.postUserLogin(userInfo)
-    .then(data => this.updateCurrentUser(data))
+  handleLoginSubmit = async (userInfo) => {
+    const loginResult = await ApiCalls.postUserLogin(userInfo)
+    if (loginResult.error) {
+      this.setState({error: loginResult.error})
+    } else {
+      this.updateCurrentUser(loginResult)
+    }
   }
 
   handleLogout = () => {
@@ -31,7 +36,9 @@ export class App extends Component {
       user: {},
       isOnHomePage: true
     })
+    window.location.reload();
   }
+
   loginButtonFunction = () => {
     this.setState({isOnHomePage: false})
   }
@@ -53,11 +60,11 @@ export class App extends Component {
         <Route
           path='/login'
           render={(props) => (
-            <Login {...props} handleSubmit={this.handleLoginSubmit} />
+            <Login {...props} handleSubmit={this.handleLoginSubmit} errorMessage={this.state.error} />
           )}
         />
-        <Route exact path="/" render={(props) => (
-          <MovieGrid {...props} currentUserId={this.state.user.id} />
+        <Route exact path="/" render={() => (
+          <MovieGrid currentUserId={this.state.user.id} />
           )}
         />
         <Route path="/:movieId" render={(props) => (

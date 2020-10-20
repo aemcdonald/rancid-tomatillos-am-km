@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from '../MovieCard/MovieCard.js';
 import ApiCalls from '../ApiCalls.js';
 import './MovieGrid.css';
@@ -20,25 +21,32 @@ class MovieGrid extends Component {
         foundMovie.userRating = rating
       })
     }
-    this.setState({movies: allMovies.movies})
+    if (allMovies.movies) {
+      this.setState({movies: allMovies.movies})
+    } else {
+      this.setState({error: allMovies.error})
+    }
   }
 
   render() {
-    const movieCards = this.state.movies.map(movie => {
+    const movieCards = this.state.movies.map((movie, index) => {
       return (
         <MovieCard
-          key={movie.id}
+          key={index}
           movie={movie}
-          history={this.props.history}
           userId={this.props.currentUserId}
         />
       )
     })
     return (
       <div className='movies-container'>
-        {movieCards}
+        {movieCards.length ? movieCards : this.state.error}
       </div>
     )
   }
 }
 export default MovieGrid;
+
+MovieGrid.propTypes = {
+  currentUserId: PropTypes.number
+};

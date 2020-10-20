@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import ApiCalls from '../ApiCalls.js';
-import App from '../App/App.js';
+import PropTypes from 'prop-types';
 import './Login.css';
 
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
     }
   }
 
@@ -35,12 +34,11 @@ class Login extends Component {
     }
   }
 
-  //need method to authenticate username & password
-
   render() {
     return (
       <form>
         <h2 className='errorMessage'>{!this.formFulfilled() && 'Please type your email and password to sign in'}</h2>
+        <h2 className='errorMessage'>{this.props.errorMessage}</h2>
         <input
           type='text'
           label='email input'
@@ -66,3 +64,8 @@ class Login extends Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  handleSubmit: PropTypes.func,
+  errorMessage: PropTypes.string
+};
