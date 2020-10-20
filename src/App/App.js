@@ -49,10 +49,10 @@ export class App extends Component {
       <img className='logo' src={logo} alt='Rancid Tomatillo Logo'/>
       <header className='header'>
         {!this.state.user.id && this.state.isOnHomePage &&
-        <Link to={'/login'} onClick={() => this.loginButtonFunction()}>Login
+        <Link className="loginLogout" to={'/login'} onClick={() => this.loginButtonFunction()}>Login
         </Link> }
         {this.state.user.id &&
-        <Link to={'/'} onClick={() => this.handleLogout()}>Logout
+        <Link className="loginLogout" to={'/'} onClick={() => this.handleLogout()}>Logout
         </Link> }
         <section className='greeting'>{this.state.user.id && 'Welcome, ' + this.state.user.name + '!'}</section>
       </header>
