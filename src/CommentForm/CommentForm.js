@@ -24,7 +24,7 @@ class CommentForm extends Component {
         <input
           name="comment"
           type="text"
-          placeholder="Leave a comment about this movie"
+          placeholder="Leave a comment"
           value={this.state.comment}
           onChange={this.handleInput}
         />
