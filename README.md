@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/aemcdonald/rancid-tomatillos-am-km">
-    <img src="src/images/TTAppTour.gif" alt="moving image of application in use" width="600">
+    <img src="src/RTJourney1.gif" alt="moving image of application in use" width="600">
   </a>
   <h3 align="center">Rancid Tomatillos</h3>
   <p align="center">
@@ -14,11 +14,15 @@
 </p>
 
 ## About The Project
-This project is part of Turing Software and Designs' Front-End Program, Module 3. The project focuses on creating an application that utilizes React to allows users to manage and rate different movies. The program is implemented with ES6 syntax and uses CSS for styling and HTML through JSX syntax. This program focuses on working with an API to send and receive data. The data is retrieved and displayed in various paths throughout the platform. React Router is utilized for path transitions and displays. Each component has a robust Jest testing suite to account for both happy and sad path testing as well as unit and integration testing.
+This was a pair project assigned during the first week of the third module of the Front-End Program at the Turing School of Software and Design. We achieved full functionality of the project spec with only two weeks of exposure to React.
+
+The project reflects the functionality of familiar movie-rating applications. The application allows users to view movies fetched from an API, sign in and rate movies and leave comments on different movies of their choice.
+
+The learning goals of this project included cementing fundamental concepts of React including architecting a React application from scratch, implementing class and functional components and utilizing React Router for path transitions and displays. Robust unit and integration testing was also implemented for each component utilizing the Jest testing suite.
 
 
 ### Built With
-* JavaScript ES6
+* JavaScript
 * CSS/HTML
 * React
 * React Router
@@ -37,22 +41,36 @@ In your terminal:
 
 
 ## Usage
+#### LOG-IN VIEW
+<img src="src/LoginPage.png" alt="Rancid Tomatillos app log-in view" width="600">
 
-#### Images
+#### HOMEPAGE VIEW
+<img src="src/LogInHome.png" alt="Rancid Tomatillos homepage view" width="600">
+
+#### MOVIESHOW VIEW
+<img src="src/MovieView.png" alt="Rancid Tomatillos app movie show view" width="600">
+
+#### MOVIESHOW FEATURES
+<img src="src/RTJourney2.gif" alt="Rancid Tomatillos app movie show commenting and rating features" width="600">
 
 ## Roadmap
-The total time allotted for this project was approximately 18 days. Future features contemplated by the developer include the following:
+The total time allotted for this project was approximately two weeks. Future features contemplated by the developer include the following:
 
-* FEATURES WE WANTED
+* Additional styling to the comments feature
+* Feature for favoriting movies when a user is logged in
+* Building an Express server from scratch (for comments and favorites)
+* Deploying to Heroku
 
 See the [open issues](https://github.com/aemcdonald/rancid-tomatillos-am-km/projects/1) for a list of proposed features (and known issues).
 
 ## Contact
 [Kristi Miller - Developer](https://github.com/Kristiannmiller)
+
 [Ashley McDonald - Developer](https://github.com/aemcdonald)
+
 Project Link: [Rancid Tomatillos](https://github.com/aemcdonald/rancid-tomatillos-am-km)
 
 ## Acknowledgements
 Leta Keane and Khalid Williams - The developers would like to thank the Turing Module 3 instructors for their assistance throughout this project and for their daily lessons on the magic of React.
 
-Our Turing Mentors - Including Turing-wide mentor John Adams, and Turing graduates Jon Sweet, Pol Sieira, Veronica Andrade and Aimee Fritz for their constant support throughout this challenging project.
+Our Turing Mentors - Including Turing graduates Jon Sweet, Pol Sieira, Veronica Andrade and Aimee Fritz for their constant support throughout this project.
