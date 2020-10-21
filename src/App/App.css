@@ -8,8 +8,9 @@ body {
   height: 100%;
 }
 header {
-  text-align: left;
-  display: flex;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2% 95%;
   background-color: #262626;
 }
 .logo {
@@ -17,24 +18,27 @@ header {
   height: 20vmin;
   justify-self: center;
 }
-a {
+
+.loginLogout {
   background-color: #262626;
   color: #b8b8b8;
+  text-align: center;
   border: none;
   border-right: solid #b8b8b8;
   height: 2em;
   width: 5em;
-  font-size: 1em;
-  margin: 3px;
+  font-size: 1.1em;
   cursor: pointer;
   text-decoration: none;
-  margin: 5px;
+  padding-top: 10px;
 }
 .greeting {
-  display: inline-flex;
+  display: inline-grid;
   color: #b8b8b8;
   font-size: 1.5em;
+  padding-top: 4px;
   margin: 3px 20px;
+  grid-column: 2;
 }
 
 @media screen and (max-height: 600px) {
