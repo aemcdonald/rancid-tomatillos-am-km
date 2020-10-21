@@ -24,6 +24,7 @@ class CommentForm extends Component {
         <input
           name="comment"
           type="text"
+          autocomplete="off"
           placeholder="Leave a comment"
           value={this.state.comment}
           onChange={this.handleInput}
