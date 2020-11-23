@@ -12,7 +12,9 @@ class MovieView extends Component {
     this.state = {
       movie: {},
       userRating: {},
-      hasRating: false
+      hasRating: false,
+      comments: [],
+      error: ''
     }
   }
 
@@ -30,6 +32,12 @@ class MovieView extends Component {
       this.getUserRating(singleMovieInfo.movie.id)
     }
     this.setState({movie: singleMovieInfo.movie})
+    try {
+      const allComments = await ApiCalls.getAllComments(this.state.movie.id)
+      this.setState({ comments: allComments.comments })
+    } catch(error) {
+      this.setState({ error: 'Failed to retrieve comments'})
+    }
   }
 
   handleUserInput = async (rating) => {
