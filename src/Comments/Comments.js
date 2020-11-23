@@ -1,9 +1,12 @@
 import React from 'react';
 import './Comments.css';
 
-const Comments = () => {
+const Comments = ({ allComments }) => {
     return(
-        <p>Comments will go here</p>
+        allComments.length > 0 ? allComments.map((comment, i) => {
+            return <h3>{comment.author}: {comment.comment}</h3>
+
+        }) : <h3>No Comments Yet!</h3>
     )
 }
 
