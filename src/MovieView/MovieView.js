@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ApiCalls from '../ApiCalls.js'
 import Rating from '../Rating/Rating.js';
 import CommentForm from '../CommentForm/CommentForm.js';
+import Comments from '../Comments/Comments.js';
 import './MovieView.css';
 
 class MovieView extends Component {
@@ -53,6 +54,7 @@ class MovieView extends Component {
         {this.props.currentUserId && !this.state.hasRating && <Rating addRating={this.handleUserInput}/>}
         <h6>Average Rating: {parseFloat(this.state.movie.average_rating).toFixed(1)}</h6>
         <CommentForm />
+        <Comments />
       </section>
     </section>
     )
