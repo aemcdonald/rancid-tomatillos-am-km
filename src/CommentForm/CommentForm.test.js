@@ -50,4 +50,19 @@ describe('CommentForm', () => {
 
         expect(mockFn).toHaveBeenCalled();
     });
+    
+    it('Should not submit if a comment has not been filled out', () => {
+        const mockUser = { email: 'olivia@turing.io', id: 88, name: 'Olivia' }
+        const mockMovieId = 1
+        const mockFn = jest.fn();
+
+        const { getByText } = render(
+            <CommentForm currentUser={mockUser} movieId={mockMovieId} addNewComment={mockFn}/>
+        )
+
+        const submitBtn = getByText('Submit');
+        userEvent.click(submitBtn);
+
+        expect(mockFn).not.toHaveBeenCalled();
+    });
 });   
