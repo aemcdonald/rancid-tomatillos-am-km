@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Comments.css';
 
 const Comments = ({ allComments }) => {
@@ -11,3 +12,7 @@ const Comments = ({ allComments }) => {
 }
 
 export default Comments;
+
+Comments.propTypes = {
+    allComments: PropTypes.array
+}
