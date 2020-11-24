@@ -12,7 +12,14 @@ class CommentForm extends Component {
 
     render() {
         return(
-            <h1>CommentForm Goes Here</h1>
+            <form>
+                <input
+                    type='text'
+                    placeholder='Leave a comment'
+                    name='comment'
+                    value={this.state.comment}
+                />
+            </form>
         )
     }
 }
