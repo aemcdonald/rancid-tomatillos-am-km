@@ -61,7 +61,7 @@ class MovieView extends Component {
         {this.props.currentUser.id && this.state.hasRating && <Rating userRating={this.state.userRating.rating} addRating={this.handleUserInput}/>}
         {this.props.currentUser.id && !this.state.hasRating && <Rating addRating={this.handleUserInput}/>}
         <h6>Average Rating: {parseFloat(this.state.movie.average_rating).toFixed(1)}</h6>
-        {this.props.currentUser.id && <CommentForm />}
+        {this.props.currentUser.id && <CommentForm currentUser={this.props.currentUser}/>}
         <Comments allComments={this.state.comments}/>
       </section>
     </section>
