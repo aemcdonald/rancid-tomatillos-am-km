@@ -33,4 +33,21 @@ describe('CommentForm', () => {
 
         expect(inputBox).toHaveValue('Great movie!');
     }); 
+
+    it('Should fire a function when the user clicks submit', () => {
+        const mockUser = { email: 'olivia@turing.io', id: 88, name: 'Olivia' }
+        const mockMovieId = 1
+        const mockFn = jest.fn();
+
+        const { getByPlaceholderText, getByText } = render(
+            <CommentForm currentUser={mockUser} movieId={mockMovieId} addNewComment={mockFn}/>
+        )
+
+        const inputBox = getByPlaceholderText('Leave a comment');
+        const submitBtn = getByText('Submit');
+        userEvent.type(inputBox, ('Boring'));
+        userEvent.click(submitBtn);
+
+        expect(mockFn).toHaveBeenCalled();
+    });
 });   
