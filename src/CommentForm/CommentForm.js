@@ -10,6 +10,10 @@ class CommentForm extends Component {
         }
     }
 
+    handleChange = (event) => {
+        this.setState({ comment: event.target.value })
+    }
+
     render() {
         return(
             <form>
@@ -18,6 +22,7 @@ class CommentForm extends Component {
                     placeholder='Leave a comment'
                     name='comment'
                     value={this.state.comment}
+                    onChange={this.handleChange}
                 />
             </form>
         )
