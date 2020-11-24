@@ -19,4 +19,18 @@ describe('CommentForm', () => {
         expect(input).toBeInTheDocument();
         expect(submitBtn).toBeInTheDocument();   
     });  
+
+    it('Should update when a user types into the input box', () => {
+        const mockUser = { email: 'olivia@turing.io', id: 88, name: 'Olivia' }
+        const mockMovieId = 1
+
+        const { getByPlaceholderText, getByText } = render(
+            <CommentForm currentUser={mockUser} movieId={mockMovieId} />
+        )
+
+        const inputBox = getByPlaceholderText('Leave a comment');
+        userEvent.type(inputBox, ('Great movie!'));
+
+        expect(inputBox).toHaveValue('Great movie!');
+    }); 
 });   
