@@ -17,5 +17,15 @@ describe('Comments', () => {
 
         expect(comment1).toBeInTheDocument();
         expect(comment2).toBeInTheDocument();
+    });
+
+    it('Should display a message if there are no comments yet', () => {
+        const mockComments = []
+
+        const { getByText } = render(<Comments allComments={mockComments}/>)
+
+        const noCommentMsg = getByText('No Comments Yet!');    
+
+        expect(noCommentMsg).toBeInTheDocument();
     })
-})
+});
