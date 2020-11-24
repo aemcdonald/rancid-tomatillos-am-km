@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ApiCalls from '../ApiCalls.js'
 import './CommentForm.css';
 
 class CommentForm extends Component {
