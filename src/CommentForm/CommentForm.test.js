@@ -1,11 +1,22 @@
 import React from 'react';
 import CommentForm from './CommentForm';  
-import { render, screen } from '@testing-library/react';
+import { getByPlaceholderText, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 describe('CommentForm', () => {
-    it('Should pass an initial test', () => {
-        expect(true).toBe(true)
-    })  
-})
+    it('Should render a form with an input and a button', () => {
+        const mockUser = { email: 'olivia@turing.io', id: 88, name: 'Olivia' }
+        const mockMovieId = 1
+
+        const { getByPlaceholderText, getByText } = render(
+            <CommentForm currentUser={mockUser} movieId={mockMovieId} />
+        )
+
+        const input = getByPlaceholderText('Leave a comment');
+        const submitBtn = getByText('Submit');
+
+        expect(input).toBeInTheDocument();
+        expect(submitBtn).toBeInTheDocument();   
+    });  
+});   
