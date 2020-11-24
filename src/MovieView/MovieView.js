@@ -26,6 +26,12 @@ class MovieView extends Component {
     }
   }
 
+  addNewComment = async (newComment, movieId) => {
+      await ApiCalls.postNewComment(newComment, movieId)
+      .catch(error => this.setState({error: 'Failed to post comment'}))
+      this.setState({ comments: [...this.state.comments, newComment] })
+  }
+
   async componentDidMount() {
     const singleMovieInfo = await ApiCalls.getSingleMovie(this.props.match.params.movieId)
     if (this.props.currentUser.id) {
@@ -61,7 +67,7 @@ class MovieView extends Component {
         {this.props.currentUser.id && this.state.hasRating && <Rating userRating={this.state.userRating.rating} addRating={this.handleUserInput}/>}
         {this.props.currentUser.id && !this.state.hasRating && <Rating addRating={this.handleUserInput}/>}
         <h6>Average Rating: {parseFloat(this.state.movie.average_rating).toFixed(1)}</h6>
-        {this.props.currentUser.id && <CommentForm currentUser={this.props.currentUser} movieId={this.props.match.params.movieId}/>}
+        {this.props.currentUser.id && <CommentForm currentUser={this.props.currentUser} movieId={this.props.match.params.movieId} addNewComment={this.addNewComment}/>}
         <Comments allComments={this.state.comments}/>
       </section>
     </section>
