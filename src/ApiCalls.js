@@ -54,6 +54,28 @@ const ApiCalls = {
       if (!response.ok) throw Error
     })
     .catch(err => console.log('failed', err.message));
+  },
+
+  getAllComments(movieId) {
+    return fetch(`http://localhost:3001/api/v1/movies/${movieId}/comments`)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => data)
+      .catch(err => console.log('failed', err.message))
+  }, 
+
+  postNewComment(newComment, movieId) {
+    return fetch(`http://localhost:3001/api/v1/movies/${movieId}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newComment)
+    })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log('Failed to post comment', err.message))
   }
 }
 
